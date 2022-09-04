@@ -6,26 +6,59 @@
    */
 
 // ======== OBJECTS DEFINITIONS ========
-// Define your objects here
 
+const human = {
+   species: 'human',
+   legs: 2,
+   hands: 2
+};
+
+const animal = {
+   species: 'animal',
+   legs: 4,
+   hands: 0
+};
+
+const woman = {
+   ...human,
+   name: 'Lilu',
+   gender: 'female',
+   saying: 'Aloha!'
+};
+
+const man = {
+   ...human,
+   name: 'Bob',
+   gender: 'male',
+   saying: 'Have a nice day!'
+};
+
+const dog = {
+   ...animal,
+   name: 'Mira',
+   gender: 'female',
+   saying: 'Woof-woof!'
+};
+
+const cat = {
+   ...animal,
+   name: 'Tyson',
+   gender: 'male',
+   saying: 'Meow-meow!'
+};
+
+const inhabitants = [
+   woman,
+   man,
+   dog,
+   cat
+];
+
+function getInhabitantInfo(inhabitant) {
+   return `${inhabitant.species}; ${inhabitant.name}; ${inhabitant.gender}; ${inhabitant.legs}; ${inhabitant.hands}; ${inhabitant.saying}`;
+}
 
 // ======== OUTPUT ========
-/* Use print(message) for output.
-   Default tag for message is <pre>. Use print(message,'div') to change containing element tag.
 
-   Message can contain HTML markup. You may also tweak index.html and/or styles.css.
-   However, please, REFRAIN from improving visuals at least until your code is reviewed
-   so code reviewers might focus on a single file that is index.js.
-   */
-
-/* Print examples:
-   print('ABC');
-   print('<strong>ABC</strong>');
-   print('<strong>ABC</strong>', 'div');
-
-   print('human; John; male; 2; 2; Hello world!; Rex, Tom, Jenny');
-   print('human; <strong>John</strong>; male; 2; 2; <em>Hello world!</em>; Rex, Tom, Jenny');
-   print('human; <strong>John</strong>; male; 2; 2; <em>Hello world!</em>; Rex, Tom, Jenny', 'div');
-   */
-
-
+inhabitants.forEach((inhabitant) =>
+   print(getInhabitantInfo(inhabitant)))
