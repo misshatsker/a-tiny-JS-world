@@ -1,64 +1,53 @@
-/* Refer to https://github.com/OleksiyRudenko/a-tiny-JS-world for the task details
-   Complete the below for code reviewers' convenience:
+class MyInhabitant {
+   constructor(species, name, gender, limbs, saying) {
+      this.species = species;
+      this.name = name;
+      this.gender = gender;
+      this.limbs = limbs;
+      this.saying = saying;
+   }
 
-   Code repository: _put repo URL here_
-   Web app: _put project's github pages URL here_
-   */
-
-// ======== OBJECTS DEFINITIONS ========
-
-const human = {
-   species: 'human',
-   legs: 2,
-   hands: 2
-};
-
-const animal = {
-   species: 'animal',
-   legs: 4,
-   hands: 0
-};
-
-const woman = {
-   ...human,
-   name: 'Lilu',
-   gender: 'female',
-   saying: 'Aloha!'
-};
-
-const man = {
-   ...human,
-   name: 'Bob',
-   gender: 'male',
-   saying: 'Have a nice day!'
-};
-
-const dog = {
-   ...animal,
-   name: 'Mira',
-   gender: 'female',
-   saying: 'Woof-woof!'
-};
-
-const cat = {
-   ...animal,
-   name: 'Tyson',
-   gender: 'male',
-   saying: 'Meow-meow!'
-};
-
-const inhabitants = [
-   woman,
-   man,
-   dog,
-   cat
-];
-
-function getInhabitantInfo(inhabitant) {
-   return `${inhabitant.species}; ${inhabitant.name}; ${inhabitant.gender}; ${inhabitant.legs}; ${inhabitant.hands}; ${inhabitant.saying}`;
+   getInhabitantInfo() {
+      return `${this.species}; ${this.name}; ${this.gender}; ${this.limbs.join('; ')}; ${this.saying}`;
+   }
 }
 
-// ======== OUTPUT ========
+class Human extends MyInhabitant {
+   constructor(name, gender, saying) {
+      super('human', name, gender, [2, 2], saying);
+   }
+}
+
+class Animal extends MyInhabitant {
+   constructor(name, gender, saying) {
+      super('animal', name, gender, [4], saying);
+   }
+}
+
+class Dog extends Animal {
+   constructor(name, gender) {
+      super(name, gender, 'Woof-woof!');
+   }
+}
+
+class Cat extends Animal {
+   constructor(name, gender) {
+      super(name, gender, 'Meow-meow!');
+   }
+}
+
+const inhabitants = [
+   new Human('Lilu', 'female', 'Aloha!'),
+   new Human('Sofi', 'female', 'Hi!'),
+   new Human('Mila', 'female', 'What`s up?'),
+   new Human('Bob', 'male', 'Have a nice day!'),
+   new Human('Mike', 'male', 'How are you?'),
+   new Human('Vasya', 'male', 'Hey!'),
+   new Dog('Mira', 'female'),
+   new Dog('Baksik', 'male'),
+   new Cat('Tyson', 'female'),
+   new Cat('Valet', 'male')
+];
 
 inhabitants.forEach((inhabitant) =>
-   print(getInhabitantInfo(inhabitant)))
+   print(inhabitant.getInhabitantInfo()));
